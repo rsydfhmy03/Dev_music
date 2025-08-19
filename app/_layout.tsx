@@ -1,9 +1,26 @@
 import { Stack } from 'expo-router';
-import { Provider } from 'jotai'; // <-- 1. Import Provider
-
+import { Provider } from 'jotai'; 
+import { useEffect } from 'react'; 
+import { Audio, InterruptionModeAndroid, InterruptionModeIOS } from 'expo-av'; 
 export default function RootLayout() {
+
+    useEffect(() => {
+    const setupAudioMode = async () => {
+      try {
+        await Audio.setAudioModeAsync({
+          staysActiveInBackground: true, 
+          playsInSilentModeIOS: true,
+          interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
+          interruptionModeIOS: InterruptionModeIOS.DoNotMix,
+        });
+      } catch (e) {
+        console.error("Failed to set audio mode", e);
+      }
+    };
+
+    setupAudioMode();
+  }, []);
   return (
-    // 2. Bungkus semua dengan Provider
     <Provider>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
