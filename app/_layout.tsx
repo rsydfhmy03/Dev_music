@@ -7,7 +7,10 @@ export default function RootLayout() {
     <Provider>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        {/* Layar lain bisa ditambahkan di sini nanti */}
+        <Stack.Screen 
+          name="now-playing" 
+          options={{ presentation: 'modal', headerShown: false }} 
+        />
       </Stack>
     </Provider>
   );

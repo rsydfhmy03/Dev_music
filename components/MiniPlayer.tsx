@@ -1,7 +1,8 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
-import { useAtom, useSetAtom } from 'jotai'; // <-- 1. Import hook dari Jotai
-import { currentSongAtom, isPlayingAtom, togglePlayPauseAtom } from '../store/playerStore'; // <-- 2. Import atom-atom yang relevan
+import { useAtom, useSetAtom } from 'jotai'; 
+import { currentSongAtom, isPlayingAtom, togglePlayPauseAtom } from '../store/playerStore'; 
 import { Ionicons } from '@expo/vector-icons'
+import { Link } from 'expo-router';
 
 export default function MiniPlayer() {
     // 3. Baca nilai dari atom
@@ -15,23 +16,26 @@ export default function MiniPlayer() {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.detailsContainer}>
-        <Text style={styles.title} numberOfLines={1}>{currentSong.filename}</Text>
-        <Text style={styles.artist} numberOfLines={1}>{currentSong.artist ?? "Unknown"}</Text>
-      </View>
-      <Pressable onPress={togglePlayPause}>
-        <Ionicons
-          name={isPlaying ? 'pause' : 'play'}
-          size={32}
-          color="white"
-        />
+    <Link href="/now-playing" asChild>
+      <Pressable>
+        <View style={styles.container}>
+          <View style={styles.detailsContainer}>
+            <Text style={styles.title} numberOfLines={1}>{currentSong.filename}</Text>
+            <Text style={styles.artist} numberOfLines={1}>{currentSong.artist ?? "Unknown"}</Text>
+          </View>
+          <Pressable onPress={togglePlayPause} style={styles.button}>
+            <Ionicons name={isPlaying ? 'pause' : 'play'} size={32} color="white" />
+          </Pressable>
+        </View>
       </Pressable>
-    </View>
+    </Link>
   );
 }
 
 const styles = StyleSheet.create({
+    button: {
+      padding: 8, 
+    },
     container: {
         position: 'absolute',
         bottom: 0,

@@ -24,7 +24,7 @@ export default function LibraryScreen() {
         filename: asset.filename,
         uri: asset.uri,
         duration: asset.duration,
-        // artist: asset.artist, // artist mungkin tidak ada, tapi kita coba ambil
+        artist: (asset as any)?.artist ?? 'Unknown Artist', 
       }));
 
       setSongs(mappedSongs);
