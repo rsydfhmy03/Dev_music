@@ -9,14 +9,23 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "audio"
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.mitahudev03.Dev_Music",
+      "permissions": [
+        "WAKE_LOCK"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -24,6 +33,16 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      [
+        "expo-av",
+        {
+          "android": {
+            "mainActivityAttributes": {
+              "android:launchMode": "singleTask"
+            }
+          }
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",
@@ -37,6 +56,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "96ca1b4b-bcd6-412f-93e8-e7c777f469c0"
+      }
     }
   }
 }
