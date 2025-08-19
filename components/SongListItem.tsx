@@ -1,14 +1,17 @@
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { Song } from '../types/Song';
 import { Ionicons } from '@expo/vector-icons'; 
-
+import { useAtom, useSetAtom } from 'jotai';
+import { playSongAtom } from '../store/playerStore';
 interface SongListItemProps {
   song: Song;
 }
 
 export default function SongListItem({ song }: SongListItemProps) {
+    // const [, playSong] = useAtom(playSongAtom);
+    const playSong = useSetAtom(playSongAtom);
   return (
-    <Pressable style={styles.container}>
+    <Pressable style={styles.container} onPress={() => playSong(song)}>
       <View style={styles.iconContainer}>
         <Ionicons name="musical-note" size={24} color="#aeaeae" />
       </View>

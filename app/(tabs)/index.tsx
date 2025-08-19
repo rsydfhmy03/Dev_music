@@ -1,5 +1,3 @@
-// file: app/(tabs)/index.tsx
-
 import { StyleSheet, Text, View, Alert, FlatList, ActivityIndicator } from 'react-native';
 import { useEffect, useState } from 'react';
 import * as MediaLibrary from 'expo-media-library';
