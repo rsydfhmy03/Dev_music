@@ -5,13 +5,18 @@ import { useAtom, useSetAtom } from 'jotai';
 import { playSongAtom } from '../store/playerStore';
 interface SongListItemProps {
   song: Song;
+ queue?: Song[]; 
 }
 
-export default function SongListItem({ song }: SongListItemProps) {
+export default function SongListItem({ song, queue }: SongListItemProps) {
     // const [, playSong] = useAtom(playSongAtom);
     const playSong = useSetAtom(playSongAtom);
+
+     const handlePress = () => {
+    playSong({ song, queue: queue ?? [] });
+  };
   return (
-    <Pressable style={styles.container} onPress={() => playSong(song)}>
+    <Pressable style={styles.container} onPress={handlePress}>
       <View style={styles.iconContainer}>
         <Ionicons name="musical-note" size={24} color="#aeaeae" />
       </View>

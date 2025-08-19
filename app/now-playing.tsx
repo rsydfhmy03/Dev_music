@@ -9,6 +9,8 @@ import {
   togglePlayPauseAtom,
   playbackPositionAtom,
   playbackDurationAtom,
+  playNextSongAtom,
+  playPreviousSongAtom,
   seekSongAtom,
 } from '../store/playerStore';
 
@@ -29,6 +31,8 @@ export default function NowPlayingScreen() {
   const [duration] = useAtom(playbackDurationAtom);
   const togglePlayPause = useSetAtom(togglePlayPauseAtom);
   const seek = useSetAtom(seekSongAtom);
+  const playNext = useSetAtom(playNextSongAtom);
+  const playPrevious = useSetAtom(playPreviousSongAtom);
 
   if (!currentSong) {
     return (
@@ -70,11 +74,15 @@ export default function NowPlayingScreen() {
 
       {/* Controls */}
       <View style={styles.controlsContainer}>
-        <Ionicons name="play-skip-back" size={40} color="white" />
+        <Pressable onPress={playPrevious}>
+          <Ionicons name="play-skip-back" size={40} color="white" />
+        </Pressable>
         <Pressable onPress={togglePlayPause}>
           <Ionicons name={isPlaying ? "pause-circle" : "play-circle"} size={80} color="white" />
         </Pressable>
-        <Ionicons name="play-skip-forward" size={40} color="white" />
+        <Pressable onPress={playNext}>
+          <Ionicons name="play-skip-forward" size={40} color="white" />
+        </Pressable>
       </View>
     </View>
   );

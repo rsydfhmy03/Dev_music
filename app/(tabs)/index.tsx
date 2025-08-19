@@ -59,7 +59,9 @@ export default function LibraryScreen() {
       <FlatList
         data={songs}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <SongListItem song={item} />}
+        renderItem={({ item }) => (
+          <SongListItem song={item} queue={songs} />
+        )}
         ListHeaderComponent={() => (
           <Text style={styles.title}>Pustaka Musik</Text>
         )}
